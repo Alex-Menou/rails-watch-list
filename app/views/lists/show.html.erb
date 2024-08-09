@@ -1,0 +1,40 @@
+<h1>Lists#show</h1>
+<p>Find me in app/views/lists/show.html.erb</p>
+
+<%= link_to "Mes listings", root_path, class: 'btn btn-primary' %><br>
+
+  <%= button_to "Remove this list", @list, method: :delete, class: 'btn btn-primary'  %>
+
+
+<h2>Liste des films de la liste</h2>
+<% @movies.each do |movie| %>
+  <%= movie.title %><br>
+  <%= movie.overview %><br>
+  <img src="<%= movie.poster_url %>" width="500" height="600"><br>
+  <%= movie.rating %><br>
+
+  <%= button_to "Supp film", bookmark_path(movie.bookmark_ids.first), method: :delete, class: 'btn btn-primary' %><br>
+<% end %>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moviesModal" data-bs-whatever="Movies">Ajouter un film</button>
+
+<div class="modal fade" id="moviesModal" tabindex="-1" aria-labelledby="moviesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="moviesModalLabel">Add a movie to your <% @list.name %> list</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment %>
+          <%= f.association :movie, prompt: "Choose a movie" %>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Ajouter à la liste</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
