@@ -1,6 +1,15 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
 
+<% if @imgid %>
+
+
+<div class="card-category"
+  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path  @imgid, crop: :fill %>')"
+>
+  <h1><%= @list.name %></h1>
+</div>
+
+
+<% end %>
 <%= link_to "Mes listings", root_path, class: 'btn btn-primary' %><br>
 
   <%= button_to "Remove this list", @list, method: :delete, class: 'btn btn-primary'  %>
@@ -10,7 +19,9 @@
 <% @movies.each do |movie| %>
   <%= movie.title %><br>
   <%= movie.overview %><br>
+
   <img src="<%= movie.poster_url %>" height="200"><br>
+
   <%= movie.rating %><br>
 
   <%= button_to "Supp film", bookmark_path(movie.bookmark_ids.first), method: :delete, class: 'btn btn-primary' %><br>

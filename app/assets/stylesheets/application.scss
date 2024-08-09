@@ -10,3 +10,22 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+@font-face {
+  font-family: 'Painting_With_Chocolate';
+  src: url('/assets/fonts/Painting_With_Chocolate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-category {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-family: Painting_With_Chocolate, 'Arial Narrow Bold', sans-serif;
+    color: white;
+  }
+}

@@ -9,9 +9,8 @@ class ListsController < ApplicationController
     @movies = @list.movies
     @bookmark = Bookmark.new
 
-    respond_to do |format|
-      format.html
-      format.turbo_stream
+    if @list.photo.attached?
+      @imgid = @list.photo.key
     end
   end
 
@@ -23,6 +22,7 @@ class ListsController < ApplicationController
     @list = List.new(params_list)
     if @list.save
       redirect_to list_path(@list)
+      #redirect_to root_path
     else
       render :new
     end
@@ -39,7 +39,7 @@ class ListsController < ApplicationController
   end
 
   def params_list
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo)
   end
 
 
