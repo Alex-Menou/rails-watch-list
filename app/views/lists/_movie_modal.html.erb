@@ -1,0 +1,19 @@
+<div class="modal fade" id="moviesModal" tabindex="-1" aria-labelledby="moviesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="moviesModalLabel">Add a movie to your <% @list.name %> list</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment %>
+          <%= f.association :movie, prompt: "Choose a movie" %>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Ajouter à la liste</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

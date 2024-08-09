@@ -8,6 +8,11 @@ class ListsController < ApplicationController
   def show
     @movies = @list.movies
     @bookmark = Bookmark.new
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def new
@@ -36,5 +41,6 @@ class ListsController < ApplicationController
   def params_list
     params.require(:list).permit(:name)
   end
+
 
 end
